@@ -1,0 +1,101 @@
+header:
+  version: 19
+
+machine: raspberrypi5
+distro: poky
+target:
+  - core-image-base
+
+repos:
+  stompd:
+    layers:
+      meta-stompd:
+
+  meta-raspberrypi:
+    url: https://github.com/agherzan/meta-raspberrypi
+    path: layers/meta-raspberrypi
+    branch: master
+
+  bitbake:
+    url: https://git.openembedded.org/bitbake
+    path: layers/bitbake
+    branch: "2.20"
+    layers:
+      bitbake: disabled
+
+  openembedded-core:
+    url: https://git.openembedded.org/openembedded-core
+    path: layers/openembedded-core
+    branch: blacksail
+    layers:
+      meta:
+
+  meta-yocto:
+    url: https://git.yoctoproject.org/meta-yocto
+    path: layers/meta-yocto
+    branch: blacksail
+    layers:
+      meta-poky:
+
+  meta-openembedded:
+    url: https://git.openembedded.org/meta-openembedded
+    path: layers/meta-openembedded
+    branch: blacksail
+    layers:
+      meta-oe:
+      meta-python:
+      meta-networking:
+
+  meta-qt6:
+    url: https://code.qt.io/yocto/meta-qt6.git
+    branch: "dev"
+    path: layers/meta-qt6
+
+bblayers_conf_header:
+  standard: |
+    POKY_BBLAYERS_CONF_VERSION = "2"
+    BBPATH = "${TOPDIR}"
+    BBFILES ?= ""
+local_conf_header:
+  reduce_diskspace: |
+    INHERIT += "rm_work"
+  standard: |
+    CONF_VERSION = "2"
+    PACKAGE_CLASSES = "package_rpm"
+    SDKMACHINE = "aarch64"
+    USER_CLASSES = "buildstats"
+    PATCHRESOLVE = "noop"
+    INIT_MANAGER = "systemd"
+    GCCVERSION = "16.%"
+  diskmon: |
+    BB_DISKMON_DIRS = "\
+        STOPTASKS,${TMPDIR},1G,100K \
+        STOPTASKS,${DL_DIR},1G,100K \
+        STOPTASKS,${SSTATE_DIR},1G,100K \
+        STOPTASKS,/tmp,100M,100K \
+        HALT,${TMPDIR},100M,1K \
+        HALT,${DL_DIR},100M,1K \
+        HALT,${SSTATE_DIR},100M,1K \
+        HALT,/tmp,10M,1K"
+  license: |
+    # Uncomment next line to allow the license
+    # See: linux-firmware-rpidistro in docs/ipcompliance.md
+    LICENSE_FLAGS_ACCEPTED += "synaptics-killswitch"
+  stompd: |
+    CORE_IMAGE_EXTRA_INSTALL += "hello-stompd"
+    IMAGE_FEATURES += "ssh-server-openssh"
+  no-ptest: |
+    DISTRO_FEATURES:remove = "ptest"
+  hashserv: |
+    BB_HASHSERVE_DB_DIR = "${SSTATE_DIR}"
+  sdk_clang: |
+    TOOLCHAIN_HOST_TASK:append:pn-core-image-base = " \
+        nativesdk-packagegroup-sdk-host-clang \
+        clang-cross-canadian-${TRANSLATED_TARGET_ARCH} \
+        nativesdk-clang-tools \
+        nativesdk-clang-tidy \
+    "
+  sdk_qt: |
+    IMAGE_CLASSES:append:pn-core-image-base = " populate_sdk_qt6_base"
+    TOOLCHAIN_HOST_TASK:append:pn-core-image-base = " nativesdk-packagegroup-qt6-toolchain-host-essentials"
+    

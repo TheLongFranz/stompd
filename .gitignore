@@ -66,3 +66,16 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
+# kas output
+build
+layers
+meta-raspberrypi
+.kas_shell_history
+
+#cmake build artifacts
+out
+compile_commands.json
+
+# devtool symlinks
+oe-logs
+oe-workdir

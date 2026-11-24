@@ -1,0 +1,23 @@
+[Unit]
+Description=hello-stompd
+
+[Service]
+Type=exec
+User=stompd
+
+Environment=LANG=C.UTF-8
+Environment=QT_QPA_PLATFORM=eglfs
+Environment=QT_QPA_EGLFS_KMS_CONFIG=/etc/eglfs-kms.json
+
+LimitRTPRIO=95
+LimitMEMLOCK=infinity
+
+ExecStartPre=/bin/sh -c 'echo uptime=$$(cut -d" " -f1 /proc/uptime); id; echo rtprio=$$(ulimit -r) memlock=$$(ulimit -l)'
+ExecStart=/usr/bin/hello-stompd
+
+Restart=on-failure
+RestartSec=1
+
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,16 @@
+header:
+    version: 14
+overrides:
+    repos:
+        meta-raspberrypi:
+            commit: c62ced59a5e97217ffabb43e6a970703f5ebdfde
+        bitbake:
+            commit: 7f7ae8cd58993a389adbd130b07ea5de8415d2f9
+        openembedded-core:
+            commit: 5b458838c126051c884c8cb5225c7265d1483ea6
+        meta-yocto:
+            commit: c5b4882e75c926e44e141efcdb7e3f75945389ab
+        meta-openembedded:
+            commit: a0413b03fe80a66a454e5364768d36cd1fdbeb7e
+        meta-qt6:
+            commit: aaed73557cdd46b8e9fbb5a5695b19cf22eb715d

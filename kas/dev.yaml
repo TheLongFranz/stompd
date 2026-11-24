@@ -1,0 +1,14 @@
+header:
+  version: 19
+  includes: 
+    - kas/stompd.yaml
+
+local_conf_header:
+  dev: |
+    RM_WORK_EXCLUDE += "hello-stompd"
+    IMAGE_FEATURES += "empty-root-password allow-empty-password allow-root-login post-install-logging"
+    CORE_IMAGE_EXTRA_INSTALL += "alsa-utils-aplay gdbserver strace perf valgrind rt-tests"
+    INHIBIT_PACKAGE_STRIP:pn-hello-stompd = "1"
+    INHIBIT_PACKAGE_STRIP:pn-hello-qt = "1"
+    IMAGE_GEN_DEBUGFS = "1"
+    IMAGE_FSTYPES_DEBUGFS = "tar.zst"
