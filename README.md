@@ -1,2 +1,2 @@
 # stompd
-rip cm5 pedalboard
+rpi cm5 pedalboard

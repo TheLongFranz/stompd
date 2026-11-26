@@ -16,7 +16,7 @@ import audio_device;
 #define BLOCKING [[clang::blocking]]
 #define NONALLOCATING [[clang::nonallocating]]
 #define ALLOCATING [[clang::allocating]]
-#elif
+#else
 #define NONBLOCKING
 #define BLOCKING
 #define NONALLOCATING

@@ -82,7 +82,7 @@ local_conf_header:
     # See: linux-firmware-rpidistro in docs/ipcompliance.md
     LICENSE_FLAGS_ACCEPTED += "synaptics-killswitch"
   stompd: |
-    CORE_IMAGE_EXTRA_INSTALL += "hello-stompd"
+    CORE_IMAGE_EXTRA_INSTALL += "stompd"
     IMAGE_FEATURES += "ssh-server-openssh"
   no-ptest: |
     DISTRO_FEATURES:remove = "ptest"

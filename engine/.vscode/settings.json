@@ -1,9 +1,0 @@
-{
-    "editor.formatOnSave": true,
-    "cmake.useCMakePresets": "always",
-    "cmake.configureOnOpen": true,
-    "cmake.copyCompileCommands": "${workspaceFolder}/compile_commands.json",
-    "cmake.parseBuildDiagnostics": false,
-    "clangd.pathFallback": "clangd",
-    "clangd.path": "/usr/lib/llvm-23/bin/clangd"
-}

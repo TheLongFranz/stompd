@@ -5,8 +5,8 @@ target_sources(alsa_min_alsa_min
     PUBLIC FILE_SET CXX_MODULES
     BASE_DIRS ${PROJECT_SOURCE_DIR}/include/
     FILES
-    ${PROJECT_SOURCE_DIR}/include/alsa_min/audio_device.cppm
-    ${PROJECT_SOURCE_DIR}/include/alsa_min/audio_processor.cppm)
+    alsa_min/audio_device.cppm
+    alsa_min/audio_processor.cppm)
 
 set_property(TARGET alsa_min_alsa_min PROPERTY EXPORT_NAME ${PROJECT_NAME})
 

@@ -114,6 +114,15 @@
                 "cm5",
                 "debug"
             ]
+        },
+        {
+            "name": "cm5-sdk",
+            "displayName": "CM5 Release via Yocto SDK",
+            "inherits": [
+                "cm5",
+                "release"
+            ],
+            "toolchainFile": "${sourceDir}/cmake/cm5-sdk.cmake"
         }
     ],
     "buildPresets": [
@@ -144,6 +153,10 @@
         {
             "name": "cm5-debug",
             "configurePreset": "cm5-debug"
+        },
+        {
+            "name": "cm5-sdk",
+            "configurePreset": "cm5-sdk"
         }
     ],
     "testPresets": [
