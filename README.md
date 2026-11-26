@@ -1,2 +1,3 @@
 # stompd
-rpi cm5 pedalboard
+
+Raspberry Pi CM5 Pedalboard
